@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="m-4 text-center">
+      <h1>Nro de registros: {{ areaService.areas.length }}</h1>
+  </div>
+  <div class="row d-flex flex-wrap">
+      <div class="col-sm-6 ">
+          <table class="table table-hover">
+            <thead>
+              <tr class="table-info">
+                  <td>Nombre</td>
+                  <td>Abreviatura</td>
+                  <td>Estado</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let area of areaService.areas" (click)="selectedArea(area)">
+                  <td>{{ area.Nombre }} </td>
+                  <td>{{ area.Abreviatura }}</td>
+                  <td>{{ area.Estado }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="col-sm-6 text-center">
+          <form #areaForm = "ngForm" (ngSubmit)="addArea(areaForm)">
+              
+            <div class="form-group">
+
+                <ng-container *ngIf="areaService.isMode">
+                  <input name="_id" [(ngModel)]="areaService.selectedArea._id" type="hidden">
+                </ng-container>
+
+                  <input name="Nombre" [(ngModel)]="areaService.selectedArea.Nombre" type="text" class="form-control text-center" placeholder="Nombre" required autofocus>
+                  <br>
+                  <input name="Abreviatura" [(ngModel)]="areaService.selectedArea.Abreviatura" type="text" class="form-control text-center" placeholder="Abreviatura" required>
+                  <br>
+                  <input name="Estado" [(ngModel)]="areaService.selectedArea.Estado" type="text" class="form-control text-center" placeholder="Estado" required>
+                  <br>
+              </div>
+              <!--Accione que podemos realizar en el formulario-->
+              <button type="submit" class="mx-1 btn btn-success btn-sm">Agregar </button>
+
+              <button (click)="isEditMode()" type="submit" class="mx-1 btn btn-warning btn-sm">Modificar </button>
+
+              <button (click)="isDeleteMode()" type="submit" class="mx-1 btn btn-danger btn-sm">Eliminar </button>
+          </form>
+  </div>
+</div>
+</div>
