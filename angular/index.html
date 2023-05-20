@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="MainApp">
+<head>
+    <title>Primer Ejemplo MEAN</title>
+    <link rel="stylesheet" type = "text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="htpps://code.angularjs.org/1.2.16/angular.min.js"></script>
+    <script src="nucleo.js"></script>
+</head>
+<body ng-controller="controladorPrincipal">
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Nro de registros: - {{ areas.length }} -</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset.1">
+            <table class="table table-stripe">
+                <tr class="info">
+                    <td>Nombre</td>
+                    <td>Abreviatura</td>
+                    <td>Estado</td>
+                </tr>
+                <tr ng-repeat="area in areas" ng-click="">
+                    <td>{{ area.Nombre }}</td>
+                    <td>{{ area.Abreviatura}}</td>
+                    <td>{{ area.Estado }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-6 col-sm-offset.1 text-center">
+            <form name="myForm">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg 
+                    text-center" placeholder="Nombre" ng-model="newArea.Nombre" required>
+                    </br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Abreviatura" ng-model="newArea.Abreviatura" required>
+                    </br>
+                    <input type="text" class="form-control input-lg text-center" placeholder="Estado" ng-model="newArea.Estado" required>
+                </div>
+                <!--Accione que podemos realizar en el formulario-->
+                <button type="submit" class="btn btn-success btn-lg" ng-click
+                ="registrarArea()"ng-disabled="myForm.$invalid || selected">
+                Agregar </button>
+
+                <button type="submit" class="btn btn-warning btn-lg" ng-click
+                ="modificarArea(newArea)" ng-disabled="!newArea.Nombre || !newArea.Abreviatura || !newArea.Estado || !selected ">
+                Modificar </button>
+
+                <button type="submit" class="btn btn-danger btn-lg" ng-click
+                ="borrarArea(newArea)" ng-disabled="!newArea.Nombre || !newArea.Abreviatura || !newArea.Estado || !selected ">
+                Eliminar </button>
+            </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
